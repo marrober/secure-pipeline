@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   annotations:
     app.openshift.io/vcs-uri: https://github.com/marrober/simple-apps.git
-  name: simple-pipeline-4-ci
+  name: secure-pipeline-ci
