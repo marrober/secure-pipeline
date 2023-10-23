@@ -1,4 +1,4 @@
-FROM node:boron
+FROM quay.io/marrober/rhel8-nodejs-14
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -7,9 +7,6 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN ls -al
-
-# Clone game source code
-# RUN git clone https://github.com/marrober/pacman.git .
 
 # Install app dependencies
 RUN npm install

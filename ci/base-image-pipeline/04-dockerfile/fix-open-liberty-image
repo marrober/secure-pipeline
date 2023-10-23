@@ -1,5 +1,5 @@
 #FROM docker.io/openliberty/open-liberty:latest
-FROM openliberty/open-liberty:21.0.0.9-full-java8-ibmjava-ubi
+FROM quay.io/marrober/rhel8-nodejs-14
 
 USER root
 
