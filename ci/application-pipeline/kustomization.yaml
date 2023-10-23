@@ -5,6 +5,7 @@ resources:
 - 01-pipelines/pipeline.yaml
 - 03-tasks/build.yaml
 - 03-tasks/pushImageToOCPImageStream.yaml
+- 03-tasks/acs-image-build-check.yaml
 - 04-triggers/
 - 05-smee/deployment.yaml
 

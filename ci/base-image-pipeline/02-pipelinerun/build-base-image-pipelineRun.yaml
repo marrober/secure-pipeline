@@ -13,7 +13,7 @@ spec:
     - name: quay-io-account
       value: "marrober"
     - name: quay-io-repository
-      value: "openliberty"
+      value: "rhel8-nodejs-14"
     - name: quay-io-image-tag-name
       value: "latest"
     - name: acs_central_endpoint
