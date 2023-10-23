@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: base-image-check-and-rebuild
+  labels:
+    app.kubernetes.io/part-of: build-process
 spec:
   schedule: "0 */12 * * *"            # Run the task every 12 hours
   concurrencyPolicy: "Forbid"
@@ -13,7 +15,6 @@ spec:
         metadata:
           labels:
             parent: "cronjob-base-image-rebuild"
-            app.kubernetes.io/part-of: build-process
         spec:
           containers:
           - name: oc-tekton
