@@ -28,6 +28,13 @@ spec:
       #
     - name: imagestream-url
       type: string
+      # ACS Image check parameters
+    - name: acs_central_endpoint
+      type: string
+    - name: acs_api_token
+      type: string
+    - name: roxctl-output-format              # Advanced Cluster Security image scan output format
+      type: string
   tasks:
 ##------------------------------------------------------------------
 # Git clone resources task
@@ -92,6 +99,22 @@ spec:
       workspaces:
       - name: files
         workspace: files
+##------------------------------------------------------------------
+# Perform image build check - before a possible rebuild
+##------------------------------------------------------------------
+  - name: image-build-check
+    params:
+    - name: acs_central_endpoint
+      value: $(params.acs_central_endpoint)
+    - name: acs_api_token
+      value: $(params.acs_api_token)
+    - name: public-url
+      value: $(params.imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
+    - name: roxctl-output-format
+      value: $(params.roxctl-output-format)
+    taskRef:
+      kind: Task
+      name: acs-image-build-check
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
