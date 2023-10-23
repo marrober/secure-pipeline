@@ -12,6 +12,8 @@ spec:
     - name: TLSVERIFY
       type: string
       default: 'false'
+    - name: dockerfile
+      type: string
       #
       # Git repository parameters
       #
