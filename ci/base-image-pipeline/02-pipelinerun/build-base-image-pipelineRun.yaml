@@ -23,7 +23,7 @@ spec:
     - name: roxctl-output-format
       value: "table"
     - name: dockerfile
-      value: ci/base-image-pipeline/04-dockerfile/dockerfile
+      value: ci/base-image-pipeline/04-dockerfile/rebuild-base-image
   workspaces:
   - name: files
     volumeClaimTemplate:
