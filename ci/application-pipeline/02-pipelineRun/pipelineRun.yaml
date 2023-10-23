@@ -19,11 +19,11 @@ spec:
       value: source
       # Dockerfile for the creation of the new container image.
     - name: dockerfile
-      value: source/docker/Dockerfile
+      value: docker/Dockerfile
       # The imagestream url for where the created container image will be stored. Update the namespace element if this is
       # created in a different namespace. also update the namespace file in the location namespace/namespace.yaml.
     - name: imagestream-url
-      value: image-registry.openshift-image-registry.svc:5000/simple-pipeline-1/my-app
+      value: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/pacman
   workspaces:
   - name: files
     volumeClaimTemplate:

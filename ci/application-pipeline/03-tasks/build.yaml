@@ -29,6 +29,8 @@ spec:
         npm install -g npm@9.2.0
         npm install
         ls -al
+        echo "$(params.dockerfile)"
+        cat $(params.dockerfile)
       image: registry.redhat.io/rhel8/nodejs-16
       resources: {}
       workingDir: /resources/$(params.app-dir)
