@@ -19,7 +19,7 @@ spec:
       value: source
       # Dockerfile for the creation of the new container image.
     - name: dockerfile
-      value: ci/application-pipeline/04-dockerfile/dockerfile
+      value: source/docker/Dockerfile
       # The imagestream url for where the created container image will be stored. Update the namespace element if this is
       # created in a different namespace. also update the namespace file in the location namespace/namespace.yaml.
     - name: imagestream-url
