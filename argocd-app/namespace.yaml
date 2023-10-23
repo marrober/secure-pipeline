@@ -4,3 +4,10 @@ metadata:
   annotations:
     app.openshift.io/vcs-uri: https://github.com/marrober/secure-pipeline.git
   name: secure-pipeline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    app.openshift.io/vcs-uri: https://github.com/marrober/secure-pipeline.git
+  name: secure-pipeline-ci
