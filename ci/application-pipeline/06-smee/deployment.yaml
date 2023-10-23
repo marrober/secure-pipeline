@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: smee-app-build
   labels:
-    app.kubernetes.io/part-of: smee
+    app.kubernetes.io/part-of: build-process
 spec:
   replicas: 1
   selector:

@@ -13,6 +13,7 @@ spec:
         metadata:
           labels:
             parent: "cronjob-base-image-rebuild"
+            app.kubernetes.io/part-of: build-process
         spec:
           containers:
           - name: oc-tekton
