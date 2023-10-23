@@ -1,5 +1,7 @@
 FROM quay.io/marrober/rhel8-nodejs-14
 
+USER root
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,6 +12,8 @@ RUN ls -al
 
 # Install app dependencies
 RUN npm install
+
+USER 1001
 
 # Expose port 8080
 EXPOSE 8080
