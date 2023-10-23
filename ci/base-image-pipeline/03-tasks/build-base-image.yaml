@@ -38,7 +38,7 @@ spec:
         - '-t'
         - quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)
         - .
-      image: image-registry.openshift-image-registry.svc:5000/myapp-ci/buildah:latest
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah:latest
       securityContext:
         capabilities:
           add: ["SETFCAP"]
