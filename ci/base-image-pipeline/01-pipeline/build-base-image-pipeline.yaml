@@ -24,6 +24,8 @@ spec:
     type: string
   - name: roxctl-output-format              # Advanced Cluster Security image scan output format
     type: string
+  - name: dockerfile
+    type: string
   tasks:
 ##------------------------------------------------------------------
 # Perform image build check - before a possible rebuild
@@ -80,6 +82,8 @@ spec:
         value: $(params.quay-io-repository)
       - name: quay-io-image-tag-name
         value: $(params.quay-io-image-tag-name)
+      - name: dockerfile
+        value: $(params.dockerfile)
     taskRef:
       kind: Task
       name: build-base-image

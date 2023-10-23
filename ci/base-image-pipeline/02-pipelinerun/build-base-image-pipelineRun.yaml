@@ -22,6 +22,8 @@ spec:
       value: acs-secret
     - name: roxctl-output-format
       value: "table"
+    - name: dockerfile
+      value: ci/base-image-pipeline/04-dockerfile/dockerfile
   workspaces:
   - name: files
     volumeClaimTemplate:

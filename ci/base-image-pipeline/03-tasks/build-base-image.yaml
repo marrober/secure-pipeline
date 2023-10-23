@@ -23,6 +23,9 @@ spec:
     - name: STORAGE_DRIVER
       description: The Buildah storage STORAGE_DRIVER
       type: string
+    - name: dockerfile
+      description: Location of the dockerfile to build
+      type: string
   steps :
     - name: build-base-image
       command:
@@ -34,7 +37,7 @@ spec:
         - '/files/buildah-containers'
         - '--layers'
         - '-f'
-        - base-image/04-dockerfile/fix-open-liberty-image
+        - $(params.dockerfile)
         - '-t'
         - quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)
         - .
