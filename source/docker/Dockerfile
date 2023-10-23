@@ -4,7 +4,7 @@ FROM node:boron
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY /resources/source .
+COPY . .
 
 RUN ls -al
 
