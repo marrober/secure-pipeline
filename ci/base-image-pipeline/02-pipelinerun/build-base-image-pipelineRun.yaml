@@ -7,7 +7,7 @@ spec:
     name: build-base-image
   params:
     - name: git-url
-      value: https://github.com/marrober/myApp-ci.git
+      value: https://github.com/marrober/secure-pipeline.git
     - name: git-revision
       value: main
     - name: quay-io-account
