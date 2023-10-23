@@ -2,8 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- pipelines/pipeline.yaml
-- tasks/build.yaml
-- tasks/pushImageToOCPImageStream.yaml
-- smee/deployment.yaml
-- triggers/
+- 01-pipelines/pipeline.yaml
+- 03-tasks/build.yaml
+- 03-tasks/pushImageToOCPImageStream.yaml
+- 05-triggers/
+- 06-smee/deployment.yaml
+

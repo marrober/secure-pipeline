@@ -57,6 +57,8 @@ spec:
           value: $(params.STORAGE_DRIVER)
         - name: app-dir
           value: $(params.app-dir)
+        - name: dockerfile
+          value: $(params.dockerfile)
       taskRef:
         kind: Task
         name: build

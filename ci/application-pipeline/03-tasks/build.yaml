@@ -13,6 +13,8 @@ spec:
       type: string
     - name: app-dir
       type: string
+    - name: dockerfile
+      type: string
   stepTemplate:
     env:
       - name: "HOME"
@@ -40,7 +42,7 @@ spec:
       - /files/buildah-containers
       - --layers
       - -f
-      - ./dockerfile
+      - $(params.dockerfile)
       - -t
       - my-container-image
       - .
