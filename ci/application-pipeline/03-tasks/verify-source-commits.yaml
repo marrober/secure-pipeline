@@ -20,6 +20,8 @@ spec:
       gitVerifyResultVar=`cat gitVerifyResult`
       if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then  
           failTask=false 
+      else 
+          echo "gitVerifyResultVar"
       fi
 
       if [[ "$failTask" == "true" ]]; then  
