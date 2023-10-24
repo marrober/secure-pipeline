@@ -21,7 +21,7 @@ spec:
       if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then  
           failTask=false 
       else 
-          echo "gitVerifyResultVar"
+          echo "$gitVerifyResultVar"
       fi
 
       if [[ "$failTask" == "true" ]]; then  
