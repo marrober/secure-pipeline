@@ -11,11 +11,11 @@ spec:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
-      generateName: secure-pipeline-ci-run-tr-
+      generateName: app-build-ci-run-tr-
     spec:
       serviceAccountName: pipeline
       pipelineRef:
-        name: secure-pipeline
+        name: app-build
       params:
         - name: git-url
           value: $(tt.params.gitrepository.url)
