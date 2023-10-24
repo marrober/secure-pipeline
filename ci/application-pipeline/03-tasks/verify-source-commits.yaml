@@ -10,8 +10,9 @@ spec:
   - image: alpine/git:latest
     name: git-verify
     resources: {}
-    script: |
-      set -x
+    script: >-
+      #!/usr/bin/env bash
+      set +x
       failTask="true"
       apk add gpg-agent
       gpg --import /workspace/secrets/public.key
