@@ -17,7 +17,7 @@ spec:
     - name: imagestream-url
       value: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/pacman
     - name: acs_central_endpoint
-      value: central-stackrox.apps.conroe.demolab.local:443
+      value: acs-secret
     - name: acs_api_token
       value: acs-secret
     - name: roxctl-output-format 

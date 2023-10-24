@@ -38,6 +38,8 @@ spec:
           value: $(tt.params.acs_api_token)
         - name: roxctl-output-format
           value: $(tt.params.roxctl-output-format)
+        - name: dockerfile
+          value: ci/base-image-pipeline/04-dockerfile/rebuild-base-image
       workspaces:
       - name: files
         volumeClaimTemplate:
