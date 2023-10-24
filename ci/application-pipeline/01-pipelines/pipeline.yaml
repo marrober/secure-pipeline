@@ -112,7 +112,7 @@ spec:
         name: push-image-to-ocp
       runAfter:
       - build
-      - git-clone-resources
+      - verify-source-commits
       workspaces:
       - name: files
         workspace: files
