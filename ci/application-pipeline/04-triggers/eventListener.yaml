@@ -7,16 +7,16 @@ spec:
   triggers:
   - name: github-listener
     interceptors:
-     - ref:
-         name: "github"
-         kind: ClusterInterceptor
-         apiVersion: triggers.tekton.dev
-       params:
-       - name: "addChangedFiles"
-         value:
-           enabled: true
     - ref:
-        name: cel
+      name: "github"
+      kind: ClusterInterceptor
+      apiVersion: triggers.tekton.dev
+      params:
+      - name: "addChangedFiles"
+        value:
+          enabled: true
+    - ref:
+      name: cel
       params:
       - name: "filter"
         value: 'body["ref"].contains("main") && body["repository"]["name"] == "simple-apps" && extensions.changed_files.matches("source")'

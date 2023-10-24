@@ -4,37 +4,39 @@ metadata:
   name: app-build
 spec:
   params:
-      # Buildah step configuration parameters - storage driver and TLS settings.
-      #
-    - name: STORAGE_DRIVER
-      type: string
-      default: vfs
-    - name: TLSVERIFY
-      type: string
-      default: 'false'
-    - name: dockerfile
-      type: string
-      #
-      # Git repository parameters
-      #
-    - name: git-url
-      type: string
-    - name: git-revision
-      type: string
-    - name: app-dir
-      type: string
-      #
-      # OpenShift imagestream URL parameters
-      #
-    - name: imagestream-url
-      type: string
-      # ACS Image check parameters
-    - name: acs_central_endpoint
-      type: string
-    - name: acs_api_token
-      type: string
-    - name: roxctl-output-format              # Advanced Cluster Security image scan output format
-      type: string
+    # Buildah step configuration parameters - storage driver and TLS settings.
+    #
+  - name: STORAGE_DRIVER
+    type: string
+    default: vfs
+  - name: TLSVERIFY
+    type: string
+    default: 'false'
+  - name: dockerfile
+    type: string
+    #
+    # Git repository parameters
+    #
+  - name: git-url
+    type: string
+  - name: git-revision
+    type: string
+  - name: app-dir
+    type: string
+    #
+    # OpenShift imagestream URL parameters
+    #
+  - name: imagestream-url
+    type: string
+    #
+    # ACS Image check parameters
+    #
+  - name: acs_central_endpoint
+    type: string
+  - name: acs_api_token
+    type: string
+  - name: roxctl-output-format # Advanced Cluster Security image scan output format
+    type: string
   tasks:
 ##------------------------------------------------------------------
 # Git clone resources task
@@ -60,28 +62,28 @@ spec:
 ##------------------------------------------------------------------
     - name: verify-source-commits
       runAfter:
-        - git-clone-resources
+      - git-clone-resources
       taskRef:
         kind: Task
         name: verify-source-commits
       workspaces:
-        - name: output
-          workspace: resources
-        - name: secrets
-          workspace: secrets
+      - name: output
+        workspace: resources
+      - name: secrets
+        workspace: secrets
 ##------------------------------------------------------------------
 # Build the container
 ##------------------------------------------------------------------
     - name: build
       params:
-        - name: TLSVERIFY
-          value: "$(params.TLSVERIFY)"
-        - name: STORAGE_DRIVER
-          value: $(params.STORAGE_DRIVER)
-        - name: app-dir
-          value: $(params.app-dir)
-        - name: dockerfile
-          value: $(params.dockerfile)
+      - name: TLSVERIFY
+        value: "$(params.TLSVERIFY)"
+      - name: STORAGE_DRIVER
+        value: $(params.STORAGE_DRIVER)
+      - name: app-dir
+        value: $(params.app-dir)
+      - name: dockerfile
+        value: $(params.dockerfile)
       taskRef:
         kind: Task
         name: build
@@ -109,26 +111,27 @@ spec:
         kind: Task
         name: push-image-to-ocp
       runAfter:
-        - build
+      - build
+      - git-clone-resources
       workspaces:
       - name: files
         workspace: files
 ##------------------------------------------------------------------
 # Perform image build check - before a possible rebuild
 ##------------------------------------------------------------------
-  - name: image-build-check
-    params:
-    - name: acs_central_endpoint
-      value: $(params.acs_central_endpoint)
-    - name: acs_api_token
-      value: $(params.acs_api_token)
-    - name: public-url
-      value: $(params.imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
-    - name: roxctl-output-format
-      value: $(params.roxctl-output-format)
-    taskRef:
-      kind: Task
-      name: acs-image-build-check
+    - name: image-build-check
+      params:
+      - name: acs_central_endpoint
+        value: $(params.acs_central_endpoint)
+      - name: acs_api_token
+        value: $(params.acs_api_token)
+      - name: public-url
+        value: $(params.imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
+      - name: roxctl-output-format
+        value: $(params.roxctl-output-format)
+      taskRef:
+        kind: Task
+        name: acs-image-build-check
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
