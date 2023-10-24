@@ -113,6 +113,11 @@ spec:
       runAfter:
       - build
       - verify-source-commits
+      when:
+      - input: "$(tasks.verify-source-commits.results.git-verify-result)"
+        operator: in
+        values:
+        - "pass"
       workspaces:
       - name: files
         workspace: files

@@ -4,16 +4,33 @@ metadata:
   name: verify-source-commits
 spec:
   description: This task verifies the latest commit and signature against a gpg public key
+  results:
+    - name: git-verify-result
   steps:
   - image: alpine/git:latest
     name: git-verify
     resources: {}
     script: |
       set -x
+      failTask="true"
       apk add gpg-agent
       gpg --import /workspace/secrets/public.key
       git config --global --add safe.directory /workspace/repository
-      git verify-commit HEAD || (echo "Unable to verify commit at HEAD!" && exit 1)
+      git verify-commit HEAD  > gitVerifyResult 2>&1
+      cat gitVerifyResult
+      gitVerifyResultVar = `cat gitVerifyResult`
+      if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then
+          failTask=false
+      fi
+
+      if [[ "$failTask" == "true" ]]; then
+        echo "Setting overall result to fail"
+        echo -n "fail" | tee $(results.git-verify-result.path) >> /dev/null
+      else
+        echo "Setting overall result to pass"
+        echo -n "pass" | tee $(results.git-verify-result.path) >> /dev/null
+      fi
+
     workingDir: /workspace/repository
   workspaces:
   - name: repository
