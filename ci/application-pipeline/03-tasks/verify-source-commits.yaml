@@ -16,18 +16,18 @@ spec:
       apk add gpg-agent
       gpg --import /workspace/secrets/public.key
       git config --global --add safe.directory /workspace/repository
-      git verify-commit HEAD  > gitVerifyResult 2>&1
+      git verify-commit HEAD  > gitVerifyResult 
       gitVerifyResultVar=`cat gitVerifyResult`
-      if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then  2>&1
-          failTask=false 2>&1
+      if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then  
+          failTask=false 
       fi
 
-      if [[ "$failTask" == "true" ]]; then  2>&1
-        echo "Setting overall result to fail" 2>&1
-        echo -n "fail" | tee $(results.git-verify-result.path) >> /dev/null 2>&1
+      if [[ "$failTask" == "true" ]]; then  
+        echo "Setting overall result to fail" 
+        echo -n "fail" | tee $(results.git-verify-result.path) >> /dev/null 
       else
-        echo "Setting overall result to pass" 2>&1
-        echo -n "pass" | tee $(results.git-verify-result.path) >> /dev/null 2>&1
+        echo "Setting overall result to pass" 
+        echo -n "pass" | tee $(results.git-verify-result.path) >> /dev/null 
       fi
 
     workingDir: /workspace/repository
