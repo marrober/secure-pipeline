@@ -18,7 +18,7 @@ spec:
       git config --global --add safe.directory /workspace/repository
       git verify-commit HEAD  > gitVerifyResult 2>&1
       cat gitVerifyResult
-      gitVerifyResultVar = `cat gitVerifyResult`
+      gitVerifyResultVar=`cat gitVerifyResult`
       if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then
           failTask=false
       fi
