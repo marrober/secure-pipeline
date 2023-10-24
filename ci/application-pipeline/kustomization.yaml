@@ -6,6 +6,7 @@ resources:
 - 03-tasks/build.yaml
 - 03-tasks/pushImageToOCPImageStream.yaml
 - 03-tasks/acs-image-build-check.yaml
+- 03-tasks/verify-source-commits.yaml
 - 04-triggers/
 - 05-smee/deployment.yaml
 

@@ -56,6 +56,20 @@ spec:
       - name: output
         workspace: resources
 ##------------------------------------------------------------------
+# Verify source commits
+##------------------------------------------------------------------
+    - name: verify-source-commits
+      runAfter:
+        - git-clone-resources
+      taskRef:
+        kind: Task
+        name: verify-source-commits
+      workspaces:
+        - name: output
+          workspace: resources
+        - name: secrets
+          workspace: secrets
+##------------------------------------------------------------------
 # Build the container
 ##------------------------------------------------------------------
     - name: build
@@ -121,3 +135,4 @@ spec:
   workspaces:
     - name: resources
     - name: files
+    - name: secrets
