@@ -9,4 +9,4 @@ spec:
     targetPort: http-listener
   to:
     kind: Service
-    name: el-app-build-listener-interceptor
+    name: el-app-build-listener
