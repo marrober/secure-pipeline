@@ -67,7 +67,7 @@ spec:
         kind: Task
         name: verify-source-commits
       workspaces:
-      - name: output
+      - name: repository
         workspace: resources
       - name: secrets
         workspace: secrets
