@@ -88,7 +88,7 @@ spec:
         kind: Task
         name: build
       runAfter:
-      - git-clone-resources
+      - verify-source-commits
       workspaces:
       - name: files
         workspace: files
@@ -112,7 +112,6 @@ spec:
         name: push-image-to-ocp
       runAfter:
       - build
-      - verify-source-commits
       when:
       - input: "$(tasks.verify-source-commits.results.git-verify-result)"
         operator: in
