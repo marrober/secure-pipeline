@@ -1,4 +1,4 @@
-FROM quay.io/marrober/rhel8-nodejs-14
+FROM quay.io/marrober/rhel9-nodejs16:latest
 
 USER root
 
