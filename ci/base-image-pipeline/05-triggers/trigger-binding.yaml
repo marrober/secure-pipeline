@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
   - name: gitrepository.url
-    value: https://github.com/marrober/myApp-ci.git
+    value: https://github.com/marrober/secure-pipeline.git
   - name: gitrevision
     value: main
   - name: quay-io-account
