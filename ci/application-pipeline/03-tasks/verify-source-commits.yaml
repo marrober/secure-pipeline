@@ -16,7 +16,7 @@ spec:
       apk add gpg-agent
       gpg --import /workspace/secrets/public.key
       git config --global --add safe.directory /workspace/repository
-      git verify-commit HEAD  > gitVerifyResult 
+      git verify-commit HEAD  > gitVerifyResult  2>&1
       gitVerifyResultVar=`cat gitVerifyResult`
       if [[ "$gitVerifyResultVar" == *"gpg: Good signature from"* ]]; then  
           failTask=false 

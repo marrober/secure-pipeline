@@ -89,29 +89,6 @@ spec:
         name: build
       runAfter:
       - verify-source-commits
-      workspaces:
-      - name: files
-        workspace: files
-      - name: resources
-        workspace: resources
-#------------------------------------------------------------------
-# Push the new runtime image to OpenShift imagestream
-#------------------------------------------------------------------
-    - name: push-image-to-imagestream
-      params:
-      - name: imagestream-url
-        value: $(params.imagestream-url)
-      - name: STORAGE_DRIVER
-        value: $(params.STORAGE_DRIVER)
-      - name: TLSVERIFY
-        value: "$(params.TLSVERIFY)"
-      - name: pipelineRunName
-        value: $(context.pipelineRun.name)
-      taskRef:
-        kind: Task
-        name: push-image-to-ocp
-      runAfter:
-      - build
       when:
       - input: "$(tasks.verify-source-commits.results.git-verify-result)"
         operator: in
@@ -120,6 +97,8 @@ spec:
       workspaces:
       - name: files
         workspace: files
+      - name: resources
+        workspace: resources
 ##------------------------------------------------------------------
 # Perform image build check - before a possible rebuild
 ##------------------------------------------------------------------
@@ -138,6 +117,32 @@ spec:
       taskRef:
         kind: Task
         name: acs-image-build-check
+#------------------------------------------------------------------
+# Push the new runtime image to OpenShift imagestream
+#------------------------------------------------------------------
+    - name: push-image-to-imagestream
+      params:
+      - name: imagestream-url
+        value: $(params.imagestream-url)
+      - name: STORAGE_DRIVER
+        value: $(params.STORAGE_DRIVER)
+      - name: TLSVERIFY
+        value: "$(params.TLSVERIFY)"
+      - name: pipelineRunName
+        value: $(context.pipelineRun.name)
+      taskRef:
+        kind: Task
+        name: push-image-to-ocp
+      runAfter:
+      - image-build-check
+      when:
+      - input: "$(tasks.image-build-check.results.scan-result)"
+        operator: in
+        values:
+        - "pass"
+      workspaces:
+      - name: files
+        workspace: files
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
