@@ -129,6 +129,8 @@ spec:
         value: $(params.imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
       - name: roxctl-output-format
         value: $(params.roxctl-output-format)
+      runAfter:
+      - build
       taskRef:
         kind: Task
         name: acs-image-build-check
