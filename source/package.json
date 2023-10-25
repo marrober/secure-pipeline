@@ -13,13 +13,13 @@
     "body-parser": "^1.17.1",
     "express": "^4.14.1",
     "jade": "^1.11.0",
-    "bson": "^1.1.4",
-    "glob-parent": "^5.1.2",
+    "bson": "^1.1.6",
+    "glob-parent": "^6.1.2",
     "mongodb": "^2.2.24"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
-    "bson": "^1.1.4",
-    "glob-parent": "^5.1.2"
+    "bson": "^1.1.6",
+    "glob-parent": "^6.1.2"
   }
 }
