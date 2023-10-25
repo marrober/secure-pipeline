@@ -9,3 +9,6 @@ resources:
 - triggers/eventListenerRoute.yaml
 - triggers/triggerBinding.yaml
 - triggers/triggerTemplate.yaml
+images:
+- name: quay.io/marrober/pacman
+  newTag: s7rvf
