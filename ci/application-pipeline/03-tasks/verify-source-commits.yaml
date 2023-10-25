@@ -9,7 +9,7 @@ spec:
   steps:
   - name: git-verify
     # image: alpine/git:latest
-    image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
+    image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
     resources: {}
     script: >-
       #!/usr/bin/env bash
