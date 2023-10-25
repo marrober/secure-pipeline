@@ -217,6 +217,11 @@ spec:
       taskRef:
         kind: Task
         name: update-and-commit-kustomization-file
+      when:
+      - input: "$(tasks.image-build-check.results.scan-result)"
+        operator: in
+        values:
+        - "pass"
       runAfter:
       - push-image-to-quay
       workspaces:

@@ -1,16 +1,13 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: my-app
+  name: pacman
   labels:
-    app: my-app
-    app.kubernetes.io/component: my-app
-    app.kubernetes.io/instance: my-app
-    app.kubernetes.io/name: my-app
+    app: pacman
 spec:
   to:
     kind: Service
-    name: my-app
+    name: pacman
     weight: 100
   port:
     targetPort: 8080-tcp

@@ -1,29 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: my-app
+  name: pacman
   labels:
-    app: my-app
-    app.kubernetes.io/component: my-app
-    app.kubernetes.io/instance: my-app
-    app.kubernetes.io/name: my-app
-    app.openshift.io/runtime: my-app
-    app.openshift.io/runtime-namespace: simple-pipeline-1
+    app: pacman
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: pacman
   template:
     metadata:
       labels:
-        app: my-app
-        deployment: my-app
+        app: pacman
+        deployment: pacman
     spec:
       containers:
-        - name: my-app
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/simple-pipeline-1/my-app
+        - name: pacman
+          image: quay.io/marrober/pacman
           ports:
             - containerPort: 8080
               protocol: TCP

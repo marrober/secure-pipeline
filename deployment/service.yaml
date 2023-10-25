@@ -1,12 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-app
+  name: pacman
   labels:
-    app: my-app
-    app.kubernetes.io/component: my-app
-    app.kubernetes.io/instance: my-app
-    app.kubernetes.io/name: my-app
+    app: pacman
 spec:
   ports:
     - name: 8080-tcp
@@ -16,5 +13,5 @@ spec:
   type: ClusterIP
   sessionAffinity: None
   selector:
-    app: my-app
-    deployment: my-app
+    app: pacman
+    deployment: pacman
