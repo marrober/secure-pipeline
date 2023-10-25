@@ -3,8 +3,8 @@ FROM quay.io/marrober/rhel8-nodejs-14:latest
 USER root
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /tmp/app
+WORKDIR /tmp/app
 
 COPY . .
 
