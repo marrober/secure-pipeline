@@ -9,16 +9,13 @@ spec:
   steps:
   - name: git-verify
     # image: alpine/git:latest
-    image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/ubi:latest
+    image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
     resources: {}
     script: >-
       #!/usr/bin/env bash
-      curl -s -L -k https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.4.3.tar.bz2 --output ./gnupg-2.4.3.tar.bz2
-      tar -xvf gnupg-2.4.3.tar.bz2
-      mv 
-      set +x
+
       failTask="true"
-      apk add gpg-agent
+
       gpg --import /workspace/secrets/public.key
       git config --global --add safe.directory /workspace/repository
       git verify-commit HEAD  > gitVerifyResult  2>&1
