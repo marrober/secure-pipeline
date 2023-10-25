@@ -25,5 +25,5 @@ spec:
             - -s
             - -d
             - "{}"
-            - http://base-image-github-ci-listener-secure-pipeline-ci.apps.conroe.demolab.local/
+            - http://base-image-github-ci-listener-secure-pipeline-ci.apps.skylake.demolab.local/
           restartPolicy: OnFailure
