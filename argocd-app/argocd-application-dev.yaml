@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: secure-pipeline-app
+  name: secure-pipeline-app-dev
   namespace: openshift-gitops
 spec:
   project: secure-pipeline
