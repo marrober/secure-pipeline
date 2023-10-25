@@ -229,6 +229,8 @@ spec:
       workspaces:
       - name: files
         workspace: files
+      - name: secrets
+        workspace: secrets
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
