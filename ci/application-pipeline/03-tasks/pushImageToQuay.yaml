@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: quay-io-account
-      description: The quay.io account that matches the credentials stored in the mounted secret.
+      description: The quay.io account that matches the credentials stored in the mounted secret
       type: string
       default: ""
     - name: quay-io-repository
