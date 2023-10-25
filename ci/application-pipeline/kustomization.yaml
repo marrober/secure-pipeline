@@ -7,6 +7,8 @@ resources:
 - 03-tasks/pushImageToOCPImageStream.yaml
 - 03-tasks/acs-image-build-check.yaml
 - 03-tasks/verify-source-commits.yaml
+- 03-tasks/update-and-commit-kustomization-file.yaml
+- 03-tasks/pushImageToQuay.yaml
 - 04-triggers/
 - 05-smee/deployment.yaml
 
