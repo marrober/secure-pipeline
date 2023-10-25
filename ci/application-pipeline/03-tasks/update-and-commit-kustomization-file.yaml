@@ -37,7 +37,7 @@ spec:
             secretKeyRef:
               key: "token"
               name: "github-access-token"
-      image: image-registry.openshift-image-registry.svc:5000/myapp-ci/kustomize:latest
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/kustomize:latest
 # Changes for skylake
       securityContext:
         capabilities:

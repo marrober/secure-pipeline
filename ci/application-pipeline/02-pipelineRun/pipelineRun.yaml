@@ -41,7 +41,7 @@ spec:
     - name: my-app-cd-git-repo-name
       value: secure-pipeline
     - name: my-app-cd-git-repo-path-to-content-development
-      type: deployment
+      value: deployment
     - name: my-app-cd-git-user-name
       value: "Mark Roberts"
     - name: my-app-cd-git-user-email
