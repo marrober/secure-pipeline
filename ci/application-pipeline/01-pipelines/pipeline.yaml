@@ -40,25 +40,25 @@ spec:
     #
     # Update the kustomize file for the new image
     #
-  - name: repo_type
-    type: string
-  - name: myapp-cd-git-url
-    type: string
-  - name: my-app-cd-git-repo-name
-    type: string
-  - name: my-app-cd-git-repo-path-to-content-development
-    type: string
-  - name: my-app-cd-git-user-name
-    type: string
-  - name: my-app-cd-git-user-email
-    type: string
-  - name: my-app-cd-git-commit-comment-dev
-    type: string
+#  - name: repo_type
+#    type: string
+#  - name: myapp-cd-git-url
+#    type: string
+#  - name: my-app-cd-git-repo-name
+#    type: string
+#  - name: my-app-cd-git-repo-path-to-content-development
+#    type: string
+#  - name: my-app-cd-git-user-name
+#    type: string
+#  - name: my-app-cd-git-user-email
+#    type: string
+#  - name: my-app-cd-git-commit-comment-dev
+#    type: string
     #
     # Push image to quay.io
     #
-  - name: quay-io-account
-  - name: quay-io-repository
+#  - name: quay-io-account
+#  - name: quay-io-repository
   tasks:
 ##------------------------------------------------------------------
 # Git clone resources task
