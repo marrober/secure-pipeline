@@ -20,20 +20,6 @@ spec:
       - name: "HOME"
         value: "/tekton/home"
   steps:
-#    - name: package-node-app
-#      command:
-#      - /bin/sh
-#      - -c
-#      args:
-#      - |-
-#        npm install -g npm@9.2.0
-#        npm install
-#        ls -al
-#        echo "$(params.dockerfile)"
-#        cat $(params.dockerfile)
-#      image: registry.redhat.io/rhel8/nodejs-16
-#      resources: {}
-#      workingDir: /resources/$(params.app-dir)
     - name: build
       command:
       - buildah
@@ -48,7 +34,7 @@ spec:
       - -t
       - my-container-image
       - .
-      image: registry.redhat.io/rhel8/buildah@sha256:6a68ece207bc5fd8db2dd5cc2d0b53136236fb5178eb5b71eebe5d07a3c33d13
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       resources: {}
       securityContext:
         capabilities:
@@ -62,7 +48,7 @@ spec:
       - --storage-driver=$(params.STORAGE_DRIVER)
       - --root
       - /files/buildah-containers
-      image: registry.redhat.io/rhel8/buildah@sha256:6a68ece207bc5fd8db2dd5cc2d0b53136236fb5178eb5b71eebe5d07a3c33d13
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       resources: {}
       securityContext:
         capabilities:

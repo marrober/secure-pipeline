@@ -29,7 +29,7 @@ spec:
         - '/files/buildah-containers'
         - 'my-container-image:latest'
         - 'quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
-      image: registry.redhat.io/rhel8/buildah
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:
         capabilities:
           add: ["SETFCAP"]
@@ -41,7 +41,7 @@ spec:
         - '--storage-driver=$(params.STORAGE_DRIVER)'
         - '--root'
         - '/files/buildah-containers'
-      image: registry.redhat.io/rhel8/buildah
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:
         capabilities:
           add: ["SETFCAP"]
@@ -57,7 +57,7 @@ spec:
         - '--root'
         - '/files/buildah-containers'
         - 'quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
-      image: registry.redhat.io/rhel8/buildah
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:
         capabilities:
           add: ["SETFCAP"]
