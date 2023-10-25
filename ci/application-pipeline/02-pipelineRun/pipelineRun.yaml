@@ -6,6 +6,9 @@ spec:
   pipelineRef:
     name: app-build
   params:
+    #
+    # Git repository parameters
+    #
     - name: git-url
       value: https://github.com/marrober/secure-pipeline.git
     - name: git-revision
@@ -14,14 +17,44 @@ spec:
       value: source
     - name: dockerfile
       value: docker/Dockerfile
+    #
+    # OpenShift imagestream URL parameters
+    #
     - name: imagestream-url
       value: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/pacman
+    #
+    # ACS Image check parameters
+    #
     - name: acs_central_endpoint
       value: acs-secret
     - name: acs_api_token
       value: acs-secret
     - name: roxctl-output-format 
       value: table
+    #
+    # Update the kustomize file for the new image
+    #
+    - name: repo_type
+      value: github.com
+    - name: myapp-cd-git-url
+      value: marrober/secure-pipeline
+    - name: my-app-cd-git-repo-name
+      value: secure-pipeline
+    - name: my-app-cd-git-repo-path-to-content-development
+      type: deployment
+    - name: my-app-cd-git-user-name
+      value: "Mark Roberts"
+    - name: my-app-cd-git-user-email
+      value: "mroberts@redhat.com"
+    - name: my-app-cd-git-commit-comment-dev
+      value: "Update from ci process"
+    #
+    # Push image to quay.io
+    #
+    - name: quay-io-account
+      value: "marrober"
+    - name: quay-io-repository
+      value: "pacman"
   workspaces:
   - name: files
     volumeClaimTemplate:
