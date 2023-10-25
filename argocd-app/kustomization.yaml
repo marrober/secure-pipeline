@@ -9,6 +9,6 @@ resources:
 - argocd-project-simple-apps.yaml
 - argocd-ci-app.yaml
 - argocd-ci-base-image.yaml
-# - argocd-application.yaml
+- argocd-application.yaml
 
 
