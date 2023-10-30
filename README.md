@@ -18,13 +18,17 @@ Install the OpenShift Pipelines and OpenShift GitOps pipelines
 *Use the script below to get the ACS credentials.*
 
 `oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'`
+
 `echo ""`
+
 `oc get route -n stackrox central -o jsonpath='{"https://"}{.spec.host}{"\n"}'`
 
 *Use the script below to get the ArgoCD credentials.*
 
 `oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-`
+
 `echo ""`
+
 `oc get route/openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}'`
 
 ### ACS secret
@@ -121,3 +125,70 @@ type: kubernetes.io/dockerconfigjson
 Create the object using the command : 
 
 `oc create -f <filename.yaml>`
+
+## Add GPG key for source code commit verification
+
+Add GPG key to a secret for CI verification of source code commits
+
+`gpg --armor --export > public.key`
+
+`oc create secret generic gpg-public-key --from-file=public.key`
+
+`rm public.key`
+
+
+## Cosign for signing container images
+
+### Create the signature
+
+Create a signing key using cosign
+
+`COSIGN_PASSWORD=openshift cosign generate-key-pair k8s://openshift-pipelines/signing-secrets`
+
+
+### Create the integration in ACS
+
+Import the policy from here : ACS/image-signature-validation-policy.json
+
+Create a new signature integration in ACS to validate the cosign public key. Add the public key to the integration.
+Enable the ACS policy.
+
+Enable the policy and select the cosign signature to tell the policy what to use.
+
+## Create ArgoCD project and projects
+
+From the root of the cloned secure-pipeline repository execute the command :
+
+`oc apply -k argocd-app`
+
+### Validate the ArgoCD projects
+
+From the ArgoCD web UI validate that the project and applications have been created :
+
+* secure-pipeline-mgmt-app
+* secure-pipeline-ci-base-image
+* secure-pipeline-ci-app
+* secure-pipeline-app-dev
+
+## Test the pipeline build
+
+From the root of the cloned secure-pipeline repository execute the command :
+
+`oc create -f ci/application-pipeline/02-pipelineRun/pipelineRun.yaml`
+
+## Update the SMEE process for DemoLab / RHPDS
+
+If SMEE is used to connect triggered processes then ensure that the URL in the SMEE deployment apps is correct for the current cluster.
+
+Check the files : ci/application-pipeline/05-smee/deployment.yaml
+
+## Update the Cron job for the base image rebuild
+
+Get the route to the trigger for the base image rebuild process :
+
+`oc get route/base-image-github-ci-listener -o jsonpath='{"http://"}{.spec.host}{"/\n"}'`
+
+Add this to the curl call 
+
+
+
