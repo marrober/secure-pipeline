@@ -9,6 +9,7 @@ Install the OpenShift Pipelines and OpenShift GitOps pipelines
 ### Create initial namespaces
 
 `oc new-project secure-pipeline`
+
 `oc new-project secure-pipeline-ci`
 
 
