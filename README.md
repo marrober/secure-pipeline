@@ -188,7 +188,27 @@ Get the route to the trigger for the base image rebuild process :
 
 `oc get route/base-image-github-ci-listener -o jsonpath='{"http://"}{.spec.host}{"/\n"}'`
 
-Add this to the curl call 
+Add this to the curl call in the file ci/base-image-pipeline/06-cronjobs/base-image-check-and-rebuild.yaml
+
+## Testing
+
+### Application build
+
+Test the application build usng the command :
+
+`oc create -f ci/application-pipeline/02-pipelineRun/pipelineRun.yaml`
+
+Test the application build via a trigger by making a trivial change to the source code and committing / pusing to GitHub.
+
+### Base image build
+
+Test the base image build process using the command :
+
+`oc create -f ci/base-image-pipeline/02-pipelinerun/build-base-image-pipelineRun.yaml`
+
+Test the triggered build of the base image using the command :
+
+`curl -k -s -d "{}" http://base-image-github-ci-listener-secure-pipeline-ci.apps.skylake.demolab.local/`
 
 
 
