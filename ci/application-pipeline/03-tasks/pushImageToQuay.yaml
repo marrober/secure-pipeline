@@ -55,7 +55,7 @@ spec:
     - name: push-image-to-quay
       script: |
         buildah push --storage-driver=$(params.STORAGE_DRIVER) --authfile /etc/secret-volume/.dockerconfigjson \
-        --root /files/buildah-containers --digestfile' /tmp/image-digest \
+        --root /files/buildah-containers --digestfile /tmp/image-digest \
         quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name) 
 
         cat /tmp/image-digest | tee $(results.IMAGE_DIGEST.path)
