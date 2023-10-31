@@ -19,6 +19,11 @@ spec:
     - name: STORAGE_DRIVER
       description: The Buildah storage STORAGE_DRIVER
       type: string
+  results:
+    - name: IMAGE_DIGEST
+      type: string
+    - name: IMAGE_URL
+      type: string
   steps:
     - name: buildah-tag-image
       command:
@@ -48,16 +53,15 @@ spec:
       workingDir: /
       resources: {}
     - name: push-image-to-quay
-      command:
-        - buildah
-        - push
-        - '--storage-driver=$(params.STORAGE_DRIVER)'
-        - '--authfile'
-        - /etc/secret-volume/.dockerconfigjson
-        - '--root'
-        - '/files/buildah-containers'
-        - '--digestfile /files/$(params.quay-io-account)-$(params.quay-io-repository)-$(params.quay-io-image-tag-name)'
-        - 'quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
+      script: |
+        buildah push --storage-driver=$(params.STORAGE_DRIVER) --authfile /etc/secret-volume/.dockerconfigjson \
+        --root /files/buildah-containers --digestfile' /tmp/image-digest \
+        quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name) 
+
+        cat /tmp/image-digest | tee $(results.IMAGE_DIGEST.path)
+
+        echo "quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)" | tee $(results.IMAGE_URL.path)
+
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:
         capabilities:
