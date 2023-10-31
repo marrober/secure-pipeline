@@ -143,6 +143,7 @@ If it is necessary to delete the signature use the command :
 `gpg --list-signatures` to get the full identifier, then use (example) :
 
 `gpg --delete-secret-keys ABFC49A27C4C25E03689DF750F96D12F5EF84BB6`
+
 `gpg --delete-key ABFC49A27C4C25E03689DF750F96D12F5EF84BB6`
 
 
