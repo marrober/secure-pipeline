@@ -77,7 +77,13 @@ spec:
 
         gpg --import /workspace/secrets/public.key
 
-        git config --global user.signingkey 0F96D12F5EF84BB6
+        gpg --list-signatures
+
+        echo "--"
+
+        gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}'
+
+        git config --global user.signingkey $(gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}')
 
         git config --global commit.gpgsign true
 
