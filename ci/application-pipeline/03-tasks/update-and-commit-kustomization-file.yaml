@@ -131,7 +131,9 @@ spec:
 
         git add .
 
-        git commit -m "$(params.GIT_COMMIT_COMMENT)"
+        gpg --list-signatures
+
+        git commit -m "$(params.GIT_COMMIT_COMMENT)" --gpg-sign=$(gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}')
 
         echo "-----------------------------------------------------------------"
 
