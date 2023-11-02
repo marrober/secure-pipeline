@@ -40,7 +40,7 @@ spec:
         - name: GPGKEYPASSPHRASE
           valueFrom:
             secretKeyRef:
-              key: "tokepassphrasen"
+              key: "passphrase"
               name: "gpg-secret-key-passphrase"
   
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
@@ -81,9 +81,9 @@ spec:
 
         git config --global user.name $(params.GIT_USER_NAME)
 
-        gpg --import /workspace/gpg-key-secret/public.key
+        gpg --import /workspace/gpg-public-key/public.key
  
-        gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-sig-secret-secret/my-key.asc
+        gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-secret-key/my-key.asc
 
         gpg --list-signatures
 
@@ -179,4 +179,5 @@ spec:
 
   workspaces:
     - name: files
-    - name: secrets
+  - name: gpg-public-key
+  - name: gpg-secret-key

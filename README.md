@@ -95,7 +95,7 @@ Fill in the details as :
 	Password : <as copied from the secret previously>
 
 	Check the option : Disable TLS certificate validation (insecure)
-	
+
 Test the integration and save if successful.
 
 
@@ -149,6 +149,18 @@ Add GPG key to a secret for CI verification of source code commits
 `oc create secret generic gpg-public-key --from-file=public.key`
 
 `rm public.key`
+
+### Get the secret key using the passphrase
+
+`gpg -o my-key.asc --export-secret-key --pinentry-mode=loopback --passphrase  <passphrase> <signature-id>`
+
+Create the secret to hold the key :
+
+`oc create secret generic gpg-secret-key --from-file=my-key.asc`
+
+Create a secret to hold the passphrase :
+
+`oc create secret generic gpg-secret-key-passphrase --from-literal=passphrase=<passphrase>`
 
 If it is necessary to generate a signature first use the command `gpg --full-generate-key`
 

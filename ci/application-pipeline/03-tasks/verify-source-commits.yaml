@@ -16,7 +16,7 @@ spec:
 
       failTask="true"
 
-      gpg --import /workspace/secrets/public.key
+      gpg --import /workspace/gpg-public-key/public.key
 
       git config --global --add safe.directory /workspace/repository
 
@@ -53,4 +53,4 @@ spec:
     workingDir: /workspace/repository
   workspaces:
   - name: repository
-  - name: secrets
+  - name: gpg-public-key

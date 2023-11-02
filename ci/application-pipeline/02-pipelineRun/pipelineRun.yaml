@@ -74,6 +74,9 @@ spec:
         resources:
           requests:
             storage: 5Gi
-  - name: gpg-key-secret
+  - name: gpg-public-key
     secret:
       secretName: gpg-public-key
+  - name: gpg-secret-key
+    secret: 
+      secretName: gpg-secret-key

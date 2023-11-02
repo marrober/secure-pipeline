@@ -95,8 +95,8 @@ spec:
       workspaces:
       - name: repository
         workspace: resources
-      - name: secrets
-        workspace: secrets
+      - name: gpg-public-key
+        workspace: gpg-public-key
 ##------------------------------------------------------------------
 # Build the container
 ##------------------------------------------------------------------
@@ -229,12 +229,15 @@ spec:
       workspaces:
       - name: files
         workspace: files
-      - name: gpg-key-secret
-        workspace: gpg-key-secret
+      - name: gpg-public-key
+        workspace: gpg-public-key
+      - name: gpg-secret-key
+        workspace: gpg-secret-key
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
   workspaces:
     - name: resources
     - name: files
-    - name: gpg-key-secret
+    - name: gpg-public-key
+    - name: gpg-secret-key
