@@ -229,12 +229,12 @@ spec:
       workspaces:
       - name: files
         workspace: files
-      - name: secrets
-        workspace: secrets
+      - name: gpg-key-secret
+        workspace: gpg-key-secret
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
   workspaces:
     - name: resources
     - name: files
-    - name: secrets
+    - name: gpg-key-secret
