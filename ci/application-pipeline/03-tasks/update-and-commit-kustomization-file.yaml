@@ -42,7 +42,6 @@ spec:
             secretKeyRef:
               key: "passphrase"
               name: "gpg-secret-key-passphrase"
-  
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
 # Changes for skylake
       securityContext:
@@ -178,6 +177,6 @@ spec:
         fi
 
   workspaces:
-    - name: files
+  - name: files
   - name: gpg-public-key
   - name: gpg-secret-key
