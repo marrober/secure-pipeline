@@ -37,6 +37,12 @@ spec:
             secretKeyRef:
               key: "token"
               name: "github-access-token"
+        - name: GPGKEYPASSPHRASE
+          valueFrom:
+            secretKeyRef:
+              key: "tokepassphrasen"
+              name: "gpg-secret-key-passphrase"
+  
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
 # Changes for skylake
       securityContext:
@@ -75,9 +81,13 @@ spec:
 
         git config --global user.name $(params.GIT_USER_NAME)
 
-        gpg --import /workspace/secrets/public.key
+        gpg --import /workspace/gpg-key-secret/public.key
+ 
+        gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-sig-secret-secret/my-key.asc
 
         gpg --list-signatures
+
+        gpg -K
 
         echo "--"
 
