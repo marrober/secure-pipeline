@@ -17,11 +17,11 @@ Install the OpenShift Pipelines and OpenShift GitOps pipelines
 
 *Use the script below to get the ACS credentials.*
 
-`oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'`
+`oc -n rhacs-operator get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'`
 
 `echo ""`
 
-`oc get route -n stackrox central -o jsonpath='{"https://"}{.spec.host}{"\n"}'`
+`oc get route -n rhacs-operator central -o jsonpath='{"https://"}{.spec.host}{"\n"}'`
 
 *Use the script below to get the ArgoCD credentials.*
 
@@ -55,9 +55,12 @@ Patch the image registry to make it accessible externally.
 Pull container images from Red Hat Registries to accelerate access during pipeline execution.
 
 `oc import-image rhel9-nodejs-16 --from=registry.redhat.io/rhel9/nodejs-16 --confirm`
+
 `oc import-image terminal --from=quay.io/marrober/devex-terminal-4:full-terminal-1.4 --confirm`
+
 `oc import-image buildah --from=registry.redhat.io/rhel8/buildah:latest --confirm`
-`c import-image ubi --from=registry.access.redhat.com/ubi8/ubi:latest --confirm`
+
+`oc import-image ubi --from=registry.access.redhat.com/ubi8/ubi:latest --confirm`
 
 ## Enable ACS to read from the OCP image registry
 
@@ -73,16 +76,26 @@ Extract the field : openshift.io/token-secret.value into the copy-paste buffer.
 
 In ACS go to Platform configurations -> Integrations -> Image integration -> Generic Docker Registry and press the ‘Create integration’ button.
 
-If the ACS cluster is to be accessed for CI/CD vulnerability and resource testing from the cluster on which ACS is installed then the Endpoint is : https://image-registry.openshift-image-registry.svc:5000
+If the ACS cluster is to be accessed for CI/CD vulnerability and resource testing from the cluster on which ACS is installed then the Endpoint is : 
 
-If the ACS cluster is to be accessed for CI/CD purposes from another cluster then the Endpoint is : https://default-route-openshift-image-registry.apps.<cluster-name>.demolab.local
+`https://image-registry.openshift-image-registry.svc:5000`
+
+If the ACS cluster is to be accessed for CI/CD purposes from another cluster then the Endpoint is : 
+
+`https://default-route-openshift-image-registry.apps.<cluster-name>.demolab.local`
 
 Fill in the details as :
+
 	Integration name : OCP Registry
-	Endpoint : https://image-registry.openshift-image-registry.svc:5000
+
+	Endpoint : `https://image-registry.openshift-image-registry.svc:5000`
+
 	Username : serviceaccount
+
 	Password : <as copied from the secret previously>
+
 	Check the option : Disable TLS certificate validation (insecure)
+	
 Test the integration and save if successful.
 
 
@@ -100,7 +113,8 @@ Repo - all settings
 Admin:org - read:org
 Save the token and paste it into the command below :
 Execute the command : 
-`oc create secret generic github-access-token \ --from-literal=token=<token>`
+
+`oc create secret generic github-access-token --from-literal=token=<token>`
 
 ## Quay.io Access
 
