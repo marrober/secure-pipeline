@@ -156,7 +156,7 @@ spec:
       - name: acs_api_token
         value: $(params.acs_api_token)
       - name: public-url
-        value: $(params.public-imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
+        value: $(params.imagestream-url):$(tasks.push-image-to-imagestream.results.new-tag)
       - name: roxctl-output-format
         value: $(params.roxctl-output-format)
       runAfter:

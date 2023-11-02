@@ -82,7 +82,7 @@ spec:
 
         gpg --import /workspace/gpg-public-key/public.key
  
-        gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-secret-key/my-key.asc
+        # gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-secret-key/my-key.asc
 
         gpg --list-signatures
 
