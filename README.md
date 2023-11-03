@@ -4,7 +4,7 @@
 
 ## Install operators
 
-Install the OpenShift Pipelines and OpenShift GitOps pipelines
+Install the OpenShift Pipelines and OpenShift GitOps pipelines.
 
 ### Create initial namespaces
 
