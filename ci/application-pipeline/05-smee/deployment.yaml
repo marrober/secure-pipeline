@@ -24,5 +24,5 @@ spec:
               "--saveDir",
               "/tmp/save",
               "https://smee.io/68WHHfOsfTOc8yUV",
-              "http://app-build-listener-secure-pipeline-ci.apps.skylake.demolab.local/"
+              "http://app-build-listener-secure-pipeline-ci.apps.cluster-dfldv.dynamic.opentlc.com/"
             ]

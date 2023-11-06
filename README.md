@@ -216,6 +216,10 @@ From the root of the cloned secure-pipeline repository execute the command :
 
 If SMEE is used to connect triggered processes then ensure that the URL in the SMEE deployment apps is correct for the current cluster.
 
+Get the route to the trigger for the application build process :
+
+`oc get route/app-build-listener -o jsonpath='{"http://"}{.spec.host}{"/\n"}'`
+
 Check the files : ci/application-pipeline/05-smee/deployment.yaml
 
 ## Update the Cron job for the base image rebuild
@@ -225,6 +229,7 @@ Get the route to the trigger for the base image rebuild process :
 `oc get route/base-image-github-ci-listener -o jsonpath='{"http://"}{.spec.host}{"/\n"}'`
 
 Add this to the curl call in the file ci/base-image-pipeline/06-cronjobs/base-image-check-and-rebuild.yaml
+
 
 ## Testing
 

@@ -25,5 +25,5 @@ spec:
             - -s
             - -d
             - "{}"
-            - http://base-image-github-ci-listener-secure-pipeline-ci.apps.skylake.demolab.local/
+            - http://base-image-github-ci-listener-secure-pipeline-ci.apps.cluster-dfldv.dynamic.opentlc.com/
           restartPolicy: OnFailure
