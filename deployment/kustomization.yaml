@@ -7,4 +7,4 @@ resources:
 - route.yaml
 images:
 - name: quay.io/marrober/pacman
-  newTag: vz2cw
+  newTag: 9gggd
