@@ -29,7 +29,7 @@ Install the OpenShift Pipelines and OpenShift GitOps pipelines.
 
 `echo ""`
 
-`oc get route/openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}'`
+`oc get route/openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}'`
 
 ### ACS secret
 

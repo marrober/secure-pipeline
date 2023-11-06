@@ -19,7 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// Handle root web server's public directory.
+// Handle root web server's public directory
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use('/highscores', highscores);
