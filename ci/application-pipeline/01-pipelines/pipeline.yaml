@@ -240,4 +240,4 @@ spec:
     - name: resources
     - name: files
     - name: gpg-public-key
-    - name: gpg-secret-key
+#    - name: gpg-secret-key
