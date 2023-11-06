@@ -37,11 +37,11 @@ spec:
             secretKeyRef:
               key: "token"
               name: "github-access-token"
-        - name: GPGKEYPASSPHRASE
-          valueFrom:
-            secretKeyRef:
-              key: "passphrase"
-              name: "gpg-secret-key-passphrase"
+#        - name: GPGKEYPASSPHRASE
+#          valueFrom:
+#            secretKeyRef:
+#              key: "passphrase"
+#              name: "gpg-secret-key-passphrase"
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/terminal:latest
 # Changes for skylake
       securityContext:
@@ -80,25 +80,25 @@ spec:
 
         git config --global user.name $(params.GIT_USER_NAME)
 
-        gpg --import /workspace/gpg-public-key/public.key
+        # gpg --import /workspace/gpg-public-key/public.key
  
         # gpg --import --pinentry-mode=loopback --passphrase  ${GPGKEYPASSPHRASE} /workspace/gpg-secret-key/my-key.asc
 
-        gpg --list-signatures
+        # gpg --list-signatures
 
-        gpg -K
+        # gpg -K
 
-        echo "--"
+        # echo "--"
 
-        gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}'
+        # gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}'
 
-        git config --global user.signingkey $(gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}')
+        # git config --global user.signingkey $(gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}')
 
-        git config --global commit.gpgsign true
+        # git config --global commit.gpgsign true
 
-        ls /usr/bin/gpg
+        # ls /usr/bin/gpg
 
-        git config --global gpg.program /usr/bin/gpg
+        # git config --global gpg.program /usr/bin/gpg
 
         ls -alR
 
@@ -140,9 +140,9 @@ spec:
 
         git add .
 
-        gpg --list-signatures
+        # gpg --list-signatures
 
-        git commit -m "$(params.GIT_COMMIT_COMMENT)" --gpg-sign=$(gpg --list-signatures | tail -n 2 | awk '{split($0,a," "); print a[2]}')
+        git commit -m "$(params.GIT_COMMIT_COMMENT)" 
 
         echo "-----------------------------------------------------------------"
 
@@ -178,5 +178,5 @@ spec:
 
   workspaces:
   - name: files
-  - name: gpg-public-key
-  - name: gpg-secret-key
+#  - name: gpg-public-key
+#  - name: gpg-secret-key
