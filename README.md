@@ -41,9 +41,7 @@ Generate a new CI/CD Scoped token.
 Execute the following command :
 
 
-`oc create secret generic acs-secret \`
-`--from-literal=acs_api_token=<token from above step> \`
-`--from-literal=acs_central_endpoint=<url-for-rhacs-server>:443`
+`oc create secret generic acs-secret --from-literal=acs_api_token=<token from above step> --from-literal=acs_central_endpoint=<url-for-rhacs-server>:443`
 
 
 ### Pull images
@@ -180,7 +178,6 @@ If it is necessary to delete the signature use the command :
 Create a signing key using cosign
 
 `COSIGN_PASSWORD=openshift cosign generate-key-pair k8s://openshift-pipelines/signing-secrets`
-
 
 ### Create the integration in ACS
 
