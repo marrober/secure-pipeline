@@ -33,7 +33,8 @@ spec:
         - '--root'
         - '/files/buildah-containers'
         - 'my-container-image:latest'
-        - 'quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
+#        - 'quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
+        - 'quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)'
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:
         capabilities:
@@ -56,11 +57,13 @@ spec:
       script: |
         buildah push --storage-driver=$(params.STORAGE_DRIVER) --authfile /etc/secret-volume/.dockerconfigjson \
         --root /files/buildah-containers --digestfile /tmp/image-digest \
-        quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name) 
+        quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)
+#        quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)
+
 
         cat /tmp/image-digest | tee $(results.IMAGE_DIGEST.path)
 
-        echo "quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)" | tee $(results.IMAGE_URL.path)
+        echo "quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/$(params.quay-io-account)/$(params.quay-io-repository):$(params.quay-io-image-tag-name)" | tee $(results.IMAGE_URL.path)
 
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
       securityContext:

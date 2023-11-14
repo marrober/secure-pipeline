@@ -54,9 +54,11 @@ spec:
     # Push image to quay.io
     #
     - name: quay-io-account
-      value: "marrober"
+#      value: "marrober"
+      value: "development"
     - name: quay-io-repository
-      value: "pacman"
+#      value: "pacman"
+      value: "repository-1"
   workspaces:
   - name: files
     volumeClaimTemplate:
