@@ -8,5 +8,3 @@ resources:
 images:
 - name: quay.io/development/repository-1
   newTag: nk62c
-- name: quay.io/marrober/pacman
-  newTag: 9gggd
