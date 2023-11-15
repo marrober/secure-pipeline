@@ -213,7 +213,7 @@ spec:
       - name: GIT_COMMIT_COMMENT
         value: $(params.my-app-cd-git-commit-comment-dev)
       - name: IMAGE
-        value: "quay.io/$(params.quay-io-account)/$(params.quay-io-repository):$(tasks.push-image-to-imagestream.results.new-tag)"
+        value: "quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/$(params.quay-io-account)/$(params.quay-io-repository):$(tasks.push-image-to-imagestream.results.new-tag)"
       - name: LOCATION
         value: "dev"
       taskRef:
