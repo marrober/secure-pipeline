@@ -7,6 +7,6 @@ resources:
 - route.yaml
 images:
 - name: quay.io/development/repository-1
-  newTag: dg6m4
+  newTag: nk62c
 - name: quay.io/marrober/pacman
   newTag: 9gggd
