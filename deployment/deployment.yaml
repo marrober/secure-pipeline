@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: pacman
-          image: quay.io/development/repository-1
+          image: quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/development/repository-1
           ports:
             - containerPort: 8080
               protocol: TCP
