@@ -7,4 +7,4 @@ resources:
 - route.yaml
 images:
 - name: quay.io/development/repository-1
-  newTag: nk62c
+  newTag: tk7bs
