@@ -1,0 +1,97 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: app-build-direct-to-quay
+spec:
+  params:
+    # Buildah step configuration parameters - storage driver and TLS settings.
+    #
+  - name: STORAGE_DRIVER
+    type: string
+    default: vfs
+  - name: TLSVERIFY
+    type: string
+    default: 'false'
+  - name: dockerfile
+    type: string
+    #
+    # Git repository parameters
+    #
+  - name: git-url
+    type: string
+  - name: git-revision
+    type: string
+  - name: app-dir
+    type: string
+  tasks:
+##------------------------------------------------------------------
+# Git clone resources task
+##------------------------------------------------------------------
+    - name: git-clone-resources
+      params:
+      - name: url
+        value: $(params.git-url)
+      - name: revision
+        value: $(params.git-revision)
+      - name: verbose
+        value: 'false'
+      - name: deleteExisting
+        value: 'true'
+      taskRef:
+        kind: ClusterTask
+        name:  git-clone
+      workspaces:
+      - name: output
+        workspace: resources
+##------------------------------------------------------------------
+# Verify source commits
+##------------------------------------------------------------------
+    - name: verify-source-commits
+      runAfter:
+      - git-clone-resources
+      taskRef:
+        kind: Task
+        name: verify-source-commits
+      workspaces:
+      - name: repository
+        workspace: resources
+      - name: gpg-public-key
+        workspace: gpg-public-key
+##------------------------------------------------------------------
+# Build the container
+##------------------------------------------------------------------
+    - name: build
+      params:
+      - name: TLSVERIFY
+        value: "$(params.TLSVERIFY)"
+      - name: STORAGE_DRIVER
+        value: $(params.STORAGE_DRIVER)
+      - name: app-dir
+        value: $(params.app-dir)
+      - name: dockerfile
+        value: $(params.dockerfile)
+      - name: IMAGE
+        value: 'quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/development/repository-2:1'
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      runAfter:
+      - verify-source-commits
+      when:
+      - input: "$(tasks.verify-source-commits.results.git-verify-result)"
+        operator: in
+        values:
+        - "pass"
+      workspaces:
+      - name: files
+        workspace: files
+      - name: resources
+        workspace: resources
+##------------------------------------------------------------------
+# Workspace definitions
+##------------------------------------------------------------------
+  workspaces:
+    - name: resources
+    - name: files
+    - name: gpg-public-key
+#    - name: gpg-secret-key

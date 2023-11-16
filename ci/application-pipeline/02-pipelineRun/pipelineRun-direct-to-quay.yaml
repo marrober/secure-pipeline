@@ -1,0 +1,39 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: app-build-pr-
+spec:
+  pipelineRef:
+    name: app-build-direct-to-quay
+  params:
+    #
+    # Git repository parameters
+    #
+    - name: git-url
+      value: https://github.com/marrober/secure-pipeline.git
+    - name: git-revision
+      value: main
+    - name: app-dir
+      value: source
+    - name: dockerfile
+      value: docker/Dockerfile
+  workspaces:
+  - name: files
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  - name: resources
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+  - name: gpg-public-key
+    secret:
+      secretName: gpg-public-key
