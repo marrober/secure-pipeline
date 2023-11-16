@@ -30,7 +30,7 @@ spec:
       command:
       - pwd
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
-    workingDir: $(workspaces.source.path)
+      workingDir: $(workspaces.source.path)
   workspaces:
     - mountPath: /files
       name: files
