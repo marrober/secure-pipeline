@@ -23,8 +23,16 @@ spec:
       command:
       - ls 
       - -al 
-      - /source
+      - .
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
+      workingDir: $(workspaces.source.path)
+    - name: list-2
+      command:
+      - ls 
+      - -al 
+      - source/docker
+      image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
+      workingDir: $(workspaces.source.path)
   workspaces:
     - mountPath: /files
       name: files

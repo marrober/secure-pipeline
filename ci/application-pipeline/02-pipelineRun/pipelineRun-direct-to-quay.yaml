@@ -14,9 +14,9 @@ spec:
     - name: git-revision
       value: main
     - name: app-dir
-      value: source
+      value: source/docker
     - name: dockerfile
-      value: docker/Dockerfile
+      value: Dockerfile
   workspaces:
   - name: files
     volumeClaimTemplate:
