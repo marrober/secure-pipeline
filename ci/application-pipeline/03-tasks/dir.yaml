@@ -15,11 +15,15 @@ spec:
       workingDir: $(workspaces.source.path)
     - name: list-1
       command:
-      - ls -al .
+      - ls 
+      - -al 
+      - .
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
     - name: list-2
       command:
-      - ls -al /
+      - ls 
+      - -al 
+      - /source
       image: image-registry.openshift-image-registry.svc:5000/secure-pipeline-ci/buildah
   workspaces:
     - mountPath: /files
