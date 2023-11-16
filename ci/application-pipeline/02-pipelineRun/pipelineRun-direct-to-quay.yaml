@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   generateName: app-build-pr-
-  name: app-build-direct-to-quay-plr
 spec:
   pipelineRef:
     name: app-build-direct-to-quay
