@@ -4,7 +4,6 @@ metadata:
   name: listing
 spec:
   params:
-      type: string
     - name: app-dir
       type: string
     - name: dockerfile
