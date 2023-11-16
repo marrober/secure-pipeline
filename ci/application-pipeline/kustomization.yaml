@@ -12,4 +12,3 @@ resources:
 - 04-triggers/
 - 05-smee/deployment.yaml
 - 01-pipelines/pipeline-direct-to-quay.yaml
-- 02-pipelineRun/pipelineRun-direct-to-quay.yaml
