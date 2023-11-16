@@ -9,6 +9,7 @@ resources:
 - 03-tasks/verify-source-commits.yaml
 - 03-tasks/update-and-commit-kustomization-file.yaml
 - 03-tasks/pushImageToQuay.yaml
+- 03-tasks/dir.yaml
 - 04-triggers/
 - 05-smee/deployment.yaml
 - 01-pipelines/pipeline-direct-to-quay.yaml

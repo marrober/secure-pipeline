@@ -42,21 +42,26 @@ spec:
         name:  git-clone
       workspaces:
       - name: output
-        workspace: resources
+        workspace: source
 ##------------------------------------------------------------------
-# Verify source commits
+# Listing
 ##------------------------------------------------------------------
-    - name: verify-source-commits
+    - name: listing
+      params:
+      - name: CONTEXT
+        value: $(params.app-dir)
+      - name: dockerfile
+        value: $(params.dockerfile)
       runAfter:
       - git-clone-resources
       taskRef:
         kind: Task
-        name: verify-source-commits
+        name: listing
       workspaces:
-      - name: repository
-        workspace: resources
-      - name: gpg-public-key
-        workspace: gpg-public-key
+      - name: source
+        workspace: source
+      - name: files
+        workspace: files
 ##------------------------------------------------------------------
 # Build the container
 ##------------------------------------------------------------------
@@ -76,7 +81,7 @@ spec:
         kind: ClusterTask
         name: buildah
       runAfter:
-      - verify-source-commits
+      - listing
       when:
       - input: "$(tasks.verify-source-commits.results.git-verify-result)"
         operator: in
@@ -84,12 +89,12 @@ spec:
         - "pass"
       workspaces:
       - name: source
-        workspace: resources
+        workspace: source
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
   workspaces:
-    - name: resources
+    - name: source
     - name: files
     - name: gpg-public-key
 #    - name: gpg-secret-key

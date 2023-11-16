@@ -26,7 +26,7 @@ spec:
         resources:
           requests:
             storage: 20Gi
-  - name: resources
+  - name: source
     volumeClaimTemplate:
       spec:
         accessModes:
