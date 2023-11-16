@@ -89,9 +89,6 @@ spec:
       workspaces:
       - name: source
         workspace: source
-      - name: dockerconfig
-        workspace: quay-auth-secret
-
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
