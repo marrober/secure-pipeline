@@ -85,7 +85,7 @@ spec:
       workspaces:
       - name: files
         workspace: files
-      - name: resources
+      - name: source
         workspace: resources
 ##------------------------------------------------------------------
 # Workspace definitions
