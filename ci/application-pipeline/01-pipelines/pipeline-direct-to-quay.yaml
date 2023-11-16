@@ -83,8 +83,6 @@ spec:
         values:
         - "pass"
       workspaces:
-      - name: files
-        workspace: files
       - name: source
         workspace: resources
 ##------------------------------------------------------------------
