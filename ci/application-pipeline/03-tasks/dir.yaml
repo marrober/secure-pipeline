@@ -3,11 +3,6 @@ kind: Task
 metadata:
   name: listing
 spec:
-  params:
-    - name: app-dir
-      type: string
-    - name: dockerfile
-      type: string
   stepTemplate:
     env:
       - name: "HOME"
