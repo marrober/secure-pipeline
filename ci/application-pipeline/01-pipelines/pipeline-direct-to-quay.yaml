@@ -14,6 +14,8 @@ spec:
     default: 'false'
   - name: dockerfile
     type: string
+  - name: COMMIT_SHA
+    type: string
     #
     # Git repository parameters
     #
@@ -73,12 +75,14 @@ spec:
         value: $(params.STORAGE_DRIVER)
       - name: CONTEXT
         value: $(params.app-dir)
-      - name: dockerfile
+      - name: DOCKERFILE
         value: $(params.dockerfile)
       - name: IMAGE
         value: 'quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/development/repository-2:1'
+      - name: COMMIT_SHA
+        value: $(params.COMMIT_SHA)
       taskRef:
-        kind: ClusterTask
+        kind: Task
         name: buildah
       runAfter:
       - listing

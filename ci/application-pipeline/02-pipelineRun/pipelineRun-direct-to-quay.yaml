@@ -17,6 +17,8 @@ spec:
       value: source/docker
     - name: dockerfile
       value: Dockerfile
+    - name: COMMIT_SHA
+      value: 91413ee9994486d572b7e9663bad66e08c517c65
   workspaces:
   - name: files
     volumeClaimTemplate:
