@@ -82,11 +82,6 @@ spec:
         name: buildah
       runAfter:
       - listing
-      when:
-      - input: "$(tasks.verify-source-commits.results.git-verify-result)"
-        operator: in
-        values:
-        - "pass"
       workspaces:
       - name: source
         workspace: source
