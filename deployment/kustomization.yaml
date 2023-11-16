@@ -7,4 +7,4 @@ resources:
 - route.yaml
 images:
 - name: quay.apps.cluster-l6cp9.l6cp9.sandbox1607.opentlc.com/development/repository-1
-  newTag: tk7bs
+  newTag: fbhpv
