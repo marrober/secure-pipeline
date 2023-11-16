@@ -37,3 +37,6 @@ spec:
   - name: gpg-public-key
     secret:
       secretName: gpg-public-key
+  - name: quay-auth-secret
+    secret:
+      secretName: quay-auth-secret

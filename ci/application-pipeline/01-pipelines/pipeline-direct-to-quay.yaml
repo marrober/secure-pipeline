@@ -85,6 +85,9 @@ spec:
       workspaces:
       - name: source
         workspace: source
+      - name: dockerconfig
+        workspace: quay-auth-secret
+
 ##------------------------------------------------------------------
 # Workspace definitions
 ##------------------------------------------------------------------
@@ -93,3 +96,4 @@ spec:
     - name: files
     - name: gpg-public-key
 #    - name: gpg-secret-key
+    - name: quay-auth-secret
