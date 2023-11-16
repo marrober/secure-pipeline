@@ -66,7 +66,7 @@ spec:
         value: "$(params.TLSVERIFY)"
       - name: STORAGE_DRIVER
         value: $(params.STORAGE_DRIVER)
-      - name: app-dir
+      - name: CONTEXT
         value: $(params.app-dir)
       - name: dockerfile
         value: $(params.dockerfile)
