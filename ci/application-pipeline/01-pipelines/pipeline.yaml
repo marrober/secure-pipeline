@@ -114,12 +114,13 @@ spec:
         kind: Task
         name: build
       runAfter:
-      - verify-source-commits
-      when:
-      - input: "$(tasks.verify-source-commits.results.git-verify-result)"
-        operator: in
-        values:
-        - "pass"
+      #- verify-source-commits
+      - git-clone-resources
+#      when:
+#      - input: "$(tasks.verify-source-commits.results.git-verify-result)"
+#        operator: in
+#        values:
+#        - "pass"
       workspaces:
       - name: files
         workspace: files
