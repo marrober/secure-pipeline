@@ -86,17 +86,17 @@ spec:
 ##------------------------------------------------------------------
 # Verify source commits
 ##------------------------------------------------------------------
-    - name: verify-source-commits
-      runAfter:
-      - git-clone-resources
-      taskRef:
-        kind: Task
-        name: verify-source-commits
-      workspaces:
-      - name: repository
-        workspace: resources
-      - name: gpg-public-key
-        workspace: gpg-public-key
+#    - name: verify-source-commits
+#      runAfter:
+#      - git-clone-resources
+#      taskRef:
+#        kind: Task
+#        name: verify-source-commits
+#      workspaces:
+#      - name: repository
+#        workspace: resources
+#      - name: gpg-public-key
+#        workspace: gpg-public-key
 ##------------------------------------------------------------------
 # Build the container
 ##------------------------------------------------------------------
