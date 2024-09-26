@@ -10,7 +10,7 @@
   },
   "license": "GPLv3",
   "dependencies": {
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.20.3",
     "express": "^4.14.1",
     "jade": "^1.11.0",
     "bson": "^1.1.6",
